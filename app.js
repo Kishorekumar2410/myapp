@@ -99,23 +99,6 @@ app.get('/filter/:productId',(req,res) => {
     })
 })
 
-app.get('/menu/:id',(req,res)=>{
-    let id = Number(req.params.id)
-    db.collection('menu').find({restaurant_id:id}).toArray((err,result) => {
-        if(err) throw err;
-        res.send(result)
-    })
-})
-
-
-
-// list of mealType
-app.get('/mealType',(req,res)=>{
-    db.collection('mealType').find().toArray((err,result) => {
-        if(err) throw err;
-        res.send(result)
-    })
-})
 
 // order
 app.get('/orders',(req,res)=>{
@@ -194,7 +177,7 @@ app.delete('/deleteOrder/:id',(req,res) => {
 //connection with db
 MongoClient.connect(mongoUrl,(err,client) => {
     if(err) console.log('Error while connecting');
-    db = client.db('AP');
+    db = client.db('asianpaints');
     app.listen(port,()=>{
         console.log(`Server is running on port ${port}`)
     })
